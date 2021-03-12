@@ -36,28 +36,27 @@ class Lipsform(FlaskForm):
 
 #using @app.route to route to my forms 
 
-@app.route('/make_up_bag')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/home', methods=['GET', 'POST'])
+@app.route('/make_up_bag', methods=['GET', 'POST'])
 def make_up_bag():
-    error ""
+    error = ""
     forms = Make_up_bagform()
 
 if (request.method=='POST'):
         third_name = form.third_name.data
-    
-    if len(third_name) == 0:
-        error = "Please input name"
+        
+        if len(third_name) == 0:
+            error = "Please input name"
         else:
-            new_owner = models.Make_up_bag(third_name = form.third_name.data)
-            db.session.add(new_owner)
-            db.session.commit()
-            return 'Please input Face Products'
-            return redirect('/face')    
-    return render_template('make_up_bag.html', form=form, message=error)
+             return 'Please input Face Products'
+             return redirect('/face')    
+return render_template('make_up_bag.html', form=form, message=error)
 
 
-@app.route('/face')
+@app.route('/face', methods=['GET', 'POST'])
 def face():
-    error ""
+    error = ""
     forms = faceform()
 
     if (request.method=='POST'):
@@ -66,17 +65,18 @@ def face():
         bronzer_product = form.bronzer_product.data
         blush_product = form.blush_product.data
 
-    if len(face_primer_product) == 0 or len(foundation_product) == 0 or len(bronzer_product) or len(blush_product):
+    if len(face_primer_product) == 0 or len(foundation_product) == 0 or len(bronzer_product) == 0 or len(blush_product) == 0:
         error = "Please input products"
         else:
             return 'Great, thank you!'
             return redirect('/make_up_bag.html')
     
-    return render_template('face.html', form=form, message=error)
+return render_template('face.html', form=form, message=error)
 
-@app.route('/eyes')
+
+@app.route('/eyes', methods=['GET', 'POST'])
 def eyes():
-    error ""
+    error = ""
     forms = eyesform()
 
     if (request.method=='POST'):
@@ -86,17 +86,18 @@ def eyes():
         mascara_product = form.mascara_product.data
         eye_brow_pencil_product = form.eye_brow_pencil_product.data
 
-    if len(eye_concealer_product) == 0 or len(eye_shadow_product) == 0 or len(eye_liner_product) or len(mascara_product ) or len(eye_brow_pencil_product):
+    if len(eye_concealer_product) == 0 or len(eye_shadow_product) == 0 or len(eye_liner_product) == 0 or len(mascara_product ) == 0 or len(eye_brow_pencil_product) == 0:
         error = "Please input products"
         else:
             return 'Great, thank you!'
             return redirect('/make_up_bag.html')
     
-    return render_template('eyes.html', form=form, message=error)
+return render_template('eyes.html', form=form, message=error)
 
-@app.route('/lips')
+
+@app.route('/lips', methods=['GET', 'POST'])
 def lips():
-    error ""
+    error = ""
     forms = lipsform()
 
     if (request.method=='POST'):
@@ -105,13 +106,13 @@ def lips():
         lipgloss = form.eye_liner_product.data
         
 
-    if len(lipstick_product) == 0 or len( lipgloss) == 0 or len(lipgloss):
+    if len(lipstick_product) == 0 or len( lipgloss) == 0 or len(lipgloss) === 0:
         error = "Please input products"
         else:
             return 'Great, thank you!'
             return redirect('/make_up_bag.html')
     
-    return render_template('lips.html', form=form, message=error)
+return render_template('lips.html', form=form, message=error)
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')
