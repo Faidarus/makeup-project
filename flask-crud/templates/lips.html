@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>Lips</title>
+    </head>
+    <body>
+        <div class='form'>
+            <form method='POST' action=''>
+                {{ form.hidden_tag() }}
+                {{ form.lip_liner_product.label }} {{ form.lip_liner_product }}
+                <br>
+                {{ form.lipstick_product.label }} {{ form.lipstick_product }}
+                <br>
+                {{ form.lipgloss_product.label }} {{ form.lipgloss_product}}
+                <br>
+                {{ form.submit }}
+            {{ message }}
+            </form>
+        </div>
+    </body>

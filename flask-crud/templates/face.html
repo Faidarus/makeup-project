@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Face</title>
+    </head>
+    <body>
+        <div class='form'>
+            <form method='POST' action=''>
+                {{ form.hidden_tag() }}
+                {{ form.face_primer_product.label }} {{ form.face_primer_product }}
+                <br>
+                {{ form.foundation_product.label }} {{ form.foundation_product }}
+                <br>
+                {{ form.bronzer_product.label }} {{ form.bronzer_product }}
+                <br>
+                {{ form.blush_product.label }} {{ form.blush_product }}
+                <br>
+                {{ form.submit }}
+            {{ message }}
+            </form>
+        </div>
+    </body>
+</html>

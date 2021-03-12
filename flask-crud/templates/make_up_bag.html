@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>Make-up bag</title>
+    </head>
+    <body>
+        <div class='form'>
+            <form method='POST' action=''>
+                {{ form.hidden_tag() }}
+                {{ form.third_name.label }} {{ form.third_name }}
+                <br>
+                {{ form.submit }}
+            {{ message }}
+            </form>
+        </div>
+    </body>
+</html>

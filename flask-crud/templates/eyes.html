@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Eyes</title>
+    </head>
+    <body>
+        <div class='form'>
+            <form method='POST' action=''>
+                {{ form.hidden_tag() }}
+                {{ form.eye_concealer_product.label }} {{ form.eye_concealer_product }}
+                <br>
+                {{ form.eye_shadow_product.label }} {{ form.eye_shadow_product }}
+                <br>
+                {{ form.eye_liner_product.label }} {{ form.eye_liner_product }}
+                <br>
+                {{ form.mascara_product.label }} {{ form.mascara_product }}
+                <br>
+                {{ form.eye_brow_pencil_product.label }} {{ form.eye_brow_pencil_product}}
+                <br>
+                {{ form.submit }}
+            {{ message }}
+            </form>
+        </div>
+    </body>
+</html>
