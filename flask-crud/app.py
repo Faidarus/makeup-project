@@ -5,7 +5,7 @@ from wtforms import StringField, SubmitField
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'manchester123'
- #test
+
 
 #creating forms for my data to be inputed 
 
@@ -42,15 +42,17 @@ class Lipsform(FlaskForm):
 def make_up_bag():
     error = ""
     forms = Make_up_bagform()
-
-if (request.method=='POST'):
+    if (request.method=='POST'):
         third_name = form.third_name.data
         
         if len(third_name) == 0:
             error = "Please input name"
         else:
-             return 'Please input Face Products'
-             return redirect('/face')    
+            new_owner = models.Make_up_bag(third_name=forms.third_name.data)
+            db.session.add(new_owner)
+            db.session.commit()
+            return "Thank!"
+            return redirect('/face')    
 return render_template('make_up_bag.html', form=form, message=error)
 
 
@@ -68,6 +70,9 @@ def face():
     if len(face_primer_product) == 0 or len(foundation_product) == 0 or len(bronzer_product) == 0 or len(blush_product) == 0:
         error = "Please input products"
         else:
+            new_face_products=models.Face(face_primer_product=form.face_primer_product.data,foundation_product=form.foundation_product.data,bronzer_product=form.bronzer_product.data,blush_product=form.blush_product.data)
+            db.session.add(new_face_products)
+            db.session.commit()
             return 'Great, thank you!'
             return redirect('/make_up_bag.html')
     
@@ -89,6 +94,9 @@ def eyes():
     if len(eye_concealer_product) == 0 or len(eye_shadow_product) == 0 or len(eye_liner_product) == 0 or len(mascara_product ) == 0 or len(eye_brow_pencil_product) == 0:
         error = "Please input products"
         else:
+            new_eyes_products=models.Eyes(eye_concealer_product=form.eye_concealer_product.data, eye_shadow_product=form.eye_shadow_product.data, eye_liner_product=form.eye_liner_product.data, mascara_product=form.mascara_product.data, eye_brow_pencil_product=form.eye_brow_pencil_product.data)
+            db.session.add(new_eyes_products)
+            db.session.commit()
             return 'Great, thank you!'
             return redirect('/make_up_bag.html')
     
@@ -99,16 +107,16 @@ return render_template('eyes.html', form=form, message=error)
 def lips():
     error = ""
     forms = lipsform()
-
     if (request.method=='POST'):
-        lip_liner_product = form.eye_concealer_product.data
-        lipstick_product = form.eye_shadow_product.data
-        lipgloss = form.eye_liner_product.data
+        lip_liner_product = form.lip_liner_product.data
+        lipstick_product = form.lipstick_product.data
+        lipgloss = form.lipgloss_product.data
         
 
     if len(lipstick_product) == 0 or len( lipgloss) == 0 or len(lipgloss) === 0:
         error = "Please input products"
         else:
+            new_lips_products=models.Lips(lip_liner_product=form.lip_liner_product.data, lipstick_product=form.lipstick_product.data,lipgloss=form.lipgloss_product.data)
             return 'Great, thank you!'
             return redirect('/make_up_bag.html')
     

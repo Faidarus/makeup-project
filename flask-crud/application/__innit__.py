@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy 
 from flask import Flask
-from application import routes
+from application import routes, app
 
 app = Flask(__name__)
 
