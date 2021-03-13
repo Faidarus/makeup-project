@@ -1,5 +1,8 @@
-from application import app, db
-from application.models import Make_up_bag, Face, Eyes, Lips 
+# from application import app, db
+# from application.models import Make_up_bag, Face, Eyes, Lips 
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from application import routes
 
 @app.route('/add')
 def add():

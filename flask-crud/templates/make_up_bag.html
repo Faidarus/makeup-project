@@ -3,6 +3,7 @@
         <title>Make-up bag</title>
     </head>
     <body>
+        <h2>Please input your name</h2>
         <div class='form'>
             <form method='POST' action=''>
                 {{ form.hidden_tag() }}
@@ -12,5 +13,6 @@
             {{ message }}
             </form>
         </div>
+        <a href="{{ url_for('face') }}">Make-up bag</a>
     </body>
 </html>

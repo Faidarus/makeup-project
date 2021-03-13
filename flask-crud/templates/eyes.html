@@ -3,6 +3,7 @@
         <title>Eyes</title>
     </head>
     <body>
+        <h2>Please input your Eye products</h2>
         <div class='form'>
             <form method='POST' action=''>
                 {{ form.hidden_tag() }}
@@ -19,6 +20,6 @@
                 {{ form.submit }}
             {{ message }}
             </form>
-        </div>
+        </div> <a href="{{ url_for('make_up_bag') }}">Eye Products</a>
     </body>
 </html>
