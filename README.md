@@ -2,7 +2,7 @@
 
 ## **Objective:**
 
-#### My overall objective for this project is to create a CRUD application with the use of supporting tools, methodologies and technologies that encapsulate all core modules covered during our training. 
+#### My overall objective for this project is to create a CRUD application with the use of supporting tools, methodologies and technologies that encapsulate all core modules covered during our training. I developed the idea to create a make-up bag application where one can add their face,eye or lip products into their bag.
 
 ## **Requirements:**
 
@@ -17,17 +17,16 @@
 #### * Code fully integrated into a Version Control System using the Feature-Branch model which will subsequently be built through a CI server and deployed to a cloud-based virtual machine.
 
 
-
 ## **Tech Stack:**
 
 #### **The tech stack required would be the following:**
 
-#### *Kanban Board: Trello or an equivalent Kanban Board
-#### *Database: GCP SQL Server or other Cloud Hosted managed Database.
-#### *Programming language: Python
-#### *Unit Testing with Python (Pytest)
-#### *Front-end: Flask (HTML)
+#### *Kanban Board via Trello
 #### *Version Control: GitHub
+#### *Programming language: Python
+#### *Database: MYSQL
+#### *Front-end: Flask (HTML)
+#### *Unit Testing with Python (Pytest)
 #### *CI Server: Jenkins
 #### *Cloud server: GCP Compute Engine
 
@@ -38,6 +37,8 @@
 ![entity flow chart](entityflowchart.png)
 
 
-## **Contributors:**
+## **Contributors/Reference:**
 
-#### My contributors are: Dara Oladapo,Vinesh Ghela and QA Community.
+#### My contributors are: Dara Oladapoa and Vinesh Ghela.
+#### I used QA-community and https://www.w3schools.com/html as reference.
+#### Special thanks to Dara who acted as my traniner and guided me through lessons and my project. 
