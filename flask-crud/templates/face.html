@@ -15,10 +15,31 @@
                 <br>
                 {{ form.blush_product.label }} {{ form.blush_product }}
                 <br>
+                {{ form.make_up_bag_id.label }} {{ form.make_up_bag_id }}
+                <br>
                 {{ form.submit }}
             {{ message }}
             </form>
         </div>
-        <a href="{{ url_for('make_up_bag') }}">Face Products</a>
+        <a href="{{ url_for('make_up_bag') }}">Back to Make-up bag</a>
+        <table style="width:100%">
+            <thead>
+            <tr>
+                <th>Face Primer</th>    
+                <th>Foundation</th>    
+                <th>Bronzer</th>    
+                <th>Blush</th>    
+            </tr>
+        </thead>
+        <tbody>
+            {% for f in face %}
+            <tr>
+                <td>{{f.face_primer_product}} </td>
+                <td>{{f.foundation_product}} </td>
+                <td>{{f.bronzer_product}} </td>
+                <td>{{f.blush}} </td>
+            </tr> {% endfor %} 
+        </tbody>    
+        </table>
     </body>
 </html>

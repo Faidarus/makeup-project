@@ -13,9 +13,28 @@
                 <br>
                 {{ form.lipgloss_product.label }} {{ form.lipgloss_product}}
                 <br>
+                {{ form.make_up_bag_id.label }} {{ form.make_up_bag_id }}
+                <br>
                 {{ form.submit }}
             {{ message }}
             </form>
         </div>
         <a href="{{ url_for('make_up_bag') }}">Lip Products</a>
+        
+        <table style="width:100%">
+            <thead>
+            <tr>
+                <th>Lipliner</th>    
+                <th>Lipstick</th>    
+                <th>Lipgloss</th>    
+            </tr>
+        </thead>
+        <tbody>
+            {% for l in lips %}
+            <tr>
+                <td>{{l.lip_liner_product}} </td>
+                <td>{{l.lipstick_product}} </td>
+                <td>{{l.lipgloss_product}} </td>
+            </tr> {% endfor %} 
+        </tbody>
     </body>

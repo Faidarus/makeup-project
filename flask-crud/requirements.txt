@@ -1,5 +1,11 @@
 Flask
-flask_sqlalchemy
+Flask-SQLAlchemy
+SQLAlchemy
+pymysql
 flask-wtf
 wtforms
-wtforms.validators
+Jinja2
+Werkzeug 
+pytest
+pytest-cov
+flask-testing

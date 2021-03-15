@@ -17,9 +17,32 @@
                 <br>
                 {{ form.eye_brow_pencil_product.label }} {{ form.eye_brow_pencil_product}}
                 <br>
+                {{ form.make_up_bag_id.label }} {{ form.make_up_bag_id }}
+                <br>
                 {{ form.submit }}
             {{ message }}
             </form>
-        </div> <a href="{{ url_for('make_up_bag') }}">Eye Products</a>
+        </div>
+         <a href="{{ url_for('make_up_bag') }}">Back to Make-up bag</a>
+         <table style="width:100%">
+            <thead>
+            <tr>
+                <th>Eye Concealer</th>    
+                <th>Eyeshadow</th>    
+                <th>Eyeliner</th>    
+                <th>Mascara</th>   
+                <th>Eyebrow Pencil</th>   
+            </tr>
+        </thead>
+        <tbody>
+            {% for e in eyes %}
+            <tr>
+                <td>{{e.eye_concealer_product}} </td>
+                <td>{{e.eye_shadow_product}} </td>
+                <td>{{e.eye_liner_product}} </td>
+                <td>{{e.mascara_product}} </td>
+                <td>{{e.eye_brow_pencil_product}} </td>
+            </tr> {% endfor %} 
+        </tbody>
     </body>
 </html>

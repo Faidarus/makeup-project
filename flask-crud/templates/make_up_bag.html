@@ -13,6 +13,19 @@
             {{ message }}
             </form>
         </div>
-        <a href="{{ url_for('face') }}">Make-up bag</a>
+        <table style="width:100%">
+            <thead>
+            <tr>
+                <th>Name </th>    
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in make_up_bag %}
+            <tr>
+                <td>{{m.third_name}} </td>
+                <td><a href='/face/{{m.id}}' type ="button">Face Products</a></td>
+            </tr> {% endfor %} 
+        </tbody>    
+        </table>
     </body>
 </html>
