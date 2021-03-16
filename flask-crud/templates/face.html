@@ -34,9 +34,10 @@
         <tbody>
             {% for f in face %}
             <tr>
-                <td>{{f.face_primer_product}} </td>
-                <td>{{f.foundation_product}} </td>
-                <td>{{f.bronzer_product}} </td>
+                <td>{{make_up_bag_owner.name}}</td>
+                <td>{{f.face_primer}} </td>
+                <td>{{f.foundation}} </td>
+                <td>{{f.bronzer}} </td>
                 <td>{{f.blush}} </td>
             </tr> {% endfor %} 
         </tbody>    

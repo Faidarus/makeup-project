@@ -56,12 +56,12 @@ def make_up_bag():
             new_owner = models.Make_up_bag(name=form.third_name.data)
             db.session.add(new_owner)
             db.session.commit()
-            return redirect('/face')
+            return redirect('/make_up_bag')
     make_up_bag_owner = models.Make_up_bag.query.all()
     return render_template('make_up_bag.html',title="Make-up bag", form=form, make_up_bag_owner=make_up_bag_owner, message=error)
 
 
-@app.route('/face/<int:make_up_id>', methods=['GET', 'POST'])
+@app.route('/face/<int:make_up_bag_id>', methods=['GET', 'POST'])
 def face(make_up_bag_id):
     error = ""
     form = Faceform()
@@ -72,21 +72,22 @@ def face(make_up_bag_id):
         foundation_product = form.foundation_product.data
         bronzer_product = form.bronzer_product.data
         blush_product = form.blush_product.data
-        make_up_bag_id = make_up_bag_id
+        make_up_bag_id = form.make_up_bag_id.data
         
         if len(face_primer_product) == 0 or len(foundation_product) == 0 or len(bronzer_product) == 0 or len(blush_product) == 0:
             error = "Please input face products"
         
         else:
-            new_face_products=models.Face(face_primer=form.face_primer_product.data, foundation=form.foundation_product.data, bronzer=form.bronzer_product.data, blush=form.blush_product.data,make_up_bag_id=make_up_bag_id)
+            new_face_products=models.Face(face_primer=form.face_primer_product.data, foundation=form.foundation_product.data, bronzer=form.bronzer_product.data, blush=form.blush_product.data, make_up_bag_id=form.make_up_bag_id.data)
             db.session.add(new_face_products)
             db.session.commit()
             return redirect('/make_up_bag')
-    make_up_bag_owner = models.Make_up_bag.query.all()
-    return render_template('face.html', title="Face Products", form=form, make_up_bag_owner=make_up_bag_owner, message=error)
+    face = models.Face.query.filter_by(make_up_bag_id=make_up_bag_id)
+    make_up_bag_owner=models.Make_up_bag.query.filter_by(id=make_up_bag_id).first()
+    return render_template('face.html', title="Face Products", form=form, face=face, make_up_bag_owner=make_up_bag_owner, message=error)
 
 
-@app.route('/eyes/<int:make_up_id>', methods=['GET', 'POST'])
+@app.route('/eyes/<int:make_up_bag_id>', methods=['GET', 'POST'])
 def eyes(make_up_bag_id):
     error = ""
     form = Eyesform()
@@ -98,21 +99,21 @@ def eyes(make_up_bag_id):
         eye_liner_product = form.eye_liner_product.data
         mascara_product = form.mascara_product.data
         eye_brow_pencil_product = form.eye_brow_pencil_product.data
-        make_up_bag_id = make_up_bag_id
+        make_up_bag_id = form.make_up_bag_id.data
         
         if len(eye_concealer_product) == 0 or len(eye_shadow_product) == 0 or len(eye_liner_product) == 0 or len(mascara_product ) == 0 or len(eye_brow_pencil_product) == 0:
             error = "Please input eyes products"
         else:
-            new_eyes_products=models.Eyes(eye_concealer=form.eye_concealer_product.data, eye_shadow=form.eye_shadow_product.data, eye_liner=form.eye_liner_product.data, mascara=form.mascara_product.data, eye_brow_pencil=form.eye_brow_pencil_product.data, make_up_bag_id=make_up_bag_id)
+            new_eyes_products=models.Eyes(eye_concealer=form.eye_concealer_product.data, eye_shadow=form.eye_shadow_product.data, eye_liner=form.eye_liner_product.data, mascara=form.mascara_product.data, eye_brow_pencil=form.eye_brow_pencil_product.data, make_up_bag_id=form.make_up_bag_id.data)
             db.session.add(new_eyes_products)
             db.session.commit()
-            make_up_bag_owner = models.Make_up_bag.query.all()
             return redirect('/make_up_bag')
-    
-    return render_template('eyes.html',title="Eye Products", form=form, make_up_bag_owner=make_up_bag_owner, message=error)
+    eyes = models.Eyes.query.filter_by(make_up_bag_id=make_up_bag_id)
+    make_up_bag_owner=models.Make_up_bag.query.filter_by(id=make_up_bag_id).first()
+    return render_template('eyes.html',title="Eye Products", form=form, eyes=eyes, make_up_bag_owner=make_up_bag_owner, message=error)
 
 
-@app.route('/lips/<int:make_up_id>', methods=['GET', 'POST'])
+@app.route('/lips/<int:make_up_bag_id>', methods=['GET', 'POST'])
 def lips(make_up_bag_id):
     error = ""
     form = Lipsform()
@@ -122,19 +123,19 @@ def lips(make_up_bag_id):
         lip_liner_product = form.lip_liner_product.data
         lipstick_product = form.lipstick_product.data
         lipgloss = form.lipgloss_product.data
-        make_up_bag_id = make_up_bag_id
+        make_up_bag_id = form.make_up_bag_id.data
         
         if len(lip_liner_product) == 0 or len(lipstick_product) == 0 or len(lipgloss) == 0:
             error = "Please input lips products"
         
         else:
-            new_lips_products=models.Lips(lip_liner=form.lip_liner_product.data, lipstick=form.lipstick_product.data, lipgloss=form.lipgloss_product.data, make_up_bag_id=make_up_bag_id)
+            new_lips_products=models.Lips(lip_liner=form.lip_liner_product.data, lipstick=form.lipstick_product.data, lipgloss=form.lipgloss_product.data, make_up_bag_id=form.make_up_bag_id.data)
             db.session.add(new_lips_products)
             db.session.commit()
-            make_up_bag_owner = models.Make_up_bag.query.all()
             return redirect('/make_up_bag')
-    
-    return render_template('lips.html',title="Lip Products", form=form, make_up_bag_owner=make_up_bag_owner, message=error)
+    lips = models.Lips.query.filter_by(make_up_bag_id=make_up_bag_id)
+    make_up_bag_owner=models.Make_up_bag.query.filter_by(id=make_up_bag_id).first()
+    return render_template('lips.html',title="Lip Products", form=form, lips=lips, make_up_bag_owner=make_up_bag_owner, message=error)
 
 # @app.route('/face/delete/<face_primer>') # this will not work because face_primer is an input not something in the route 
 # def delete(face_primer):

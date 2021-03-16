@@ -37,11 +37,12 @@
         <tbody>
             {% for e in eyes %}
             <tr>
-                <td>{{e.eye_concealer_product}} </td>
-                <td>{{e.eye_shadow_product}} </td>
-                <td>{{e.eye_liner_product}} </td>
-                <td>{{e.mascara_product}} </td>
-                <td>{{e.eye_brow_pencil_product}} </td>
+                <td>{{make_up_bag_owner.name}}</td>
+                <td>{{e.eye_concealer}} </td>
+                <td>{{e.eye_shadow}} </td>
+                <td>{{e.eye_liner}} </td>
+                <td>{{e.mascara}} </td>
+                <td>{{e.eye_brow_pencil}} </td>
             </tr> {% endfor %} 
         </tbody>
     </body>

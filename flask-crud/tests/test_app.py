@@ -8,7 +8,7 @@ from application.models import Make_up_bag, Face, Eyes, Lips
 class TestBase(TestCase):
     def create_app(self):
         app.config.update(SQLALCHEMY_DATABASE_URI="	sqlite:///",
-                SECRET_KEY='Test_My_Key',
+                SECRET_KEY='TEST_SECRET_KEY',
                 DEBUG=True,
                 WTF_CSRF_ENABLED=False
                 )
@@ -21,9 +21,9 @@ class TestBase(TestCase):
         db.create_all()
 
         test_owner = Make_up_bag(third_name="Sudi")
-        test_face = Face(face_primer_product="MAC Face Primer", foundation_product="Lancome Teint Idole Ultra Foundation", bronzer_product="Fenty Beauty Bronzer", blush_product="Lancome blush")
-        test_eyes = Eyes(eye_concealer_product="MAC Concealer", eye_shadow_product="MAC eyeshadow", eye_liner_product="MAC eyeliner", mascara_product="MAC mascara", eye_brow_pencil_product="MAC eyebrow pencil")
-        test_lips = Lips(lip_liner_product="Pat McGrath Lipstick", lipstick_product="Pat McGrath Lipliner", lipgloss="Pat McGrath Lipgloss")
+        test_face = Face(face_primer_product="MAC Face Primer", foundation_product="Lancome Teint Idole Ultra Foundation", bronzer_product="Fenty Beauty Bronzer", blush_product="Lancome blush", make_up_bag_id=1)
+        test_eyes = Eyes(eye_concealer_product="MAC Concealer", eye_shadow_product="MAC eyeshadow", eye_liner_product="MAC eyeliner", mascara_product="MAC mascara", eye_brow_pencil_product="MAC eyebrow pencil", make_up_bag_id=1)
+        test_lips = Lips(lip_liner_product="Pat McGrath Lipstick", lipstick_product="Pat McGrath Lipliner", lipgloss="Pat McGrath Lipgloss", make_up_bag_id=1)
         db.session.add(test_owner)
         db.session.add(test_face)
         db.session.add(test_eyes)
@@ -46,19 +46,19 @@ class TestViews(TestBase):
         self.assertIn(b'Sudi', response.data)
 
     def test_face_get(self):
-        response = self.client.get(url_for('face'))
+        response = self.client.get(url_for('face',id=1))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'MAC Face Primer','Lancome Teint Idole Ultra Foundation','Fenty Beauty Bronzer','Lancome blush', response.data)
+        self.assertIn(b'MAC Face Primer','Lancome Teint Idole Ultra Foundation','Fenty Beauty Bronzer','Lancome blush', 1, response.data)
 
     def test_eyes_get(self):
-        response = self.client.get(url_for('eyes'))
+        response = self.client.get(url_for('eyes',id=1))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'MAC Concealer', 'MAC eyeshadow', 'MAC eyeliner', 'MAC mascara', 'MAC eyebrow pencil', response.data)
+        self.assertIn(b'MAC Concealer', 'MAC eyeshadow', 'MAC eyeliner', 'MAC mascara', 'MAC eyebrow pencil', 1, response.data)
 
     def test_lips_get(self):
-        response = self.client.get(url_for('lips'))
+        response = self.client.get(url_for('lips',id=1))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Pat McGrath Lipstick', 'Pat McGrath Lipliner', 'Pat McGrath Lipgloss', response.data)
+        self.assertIn(b'Pat McGrath Lipstick', 'Pat McGrath Lipliner', 'Pat McGrath Lipgloss', 1, response.data)
 
 #testing if my input was added 
 
@@ -73,16 +73,16 @@ class TestAdd(TestBase):
 
     def test_add_face_post(self):
         response = self.client.post(
-            url_for('face'),
-            data = dict(face_primer_product="MAC Face Primer", foundation_product="Lancome Teint Idole Ultra Foundation", bronzer_product="Fenty Beauty Bronzer", blush_product="Lancome blush"),
+            url_for('face',id=1),
+            data = dict(face_primer_product="MAC Face Primer", foundation_product="Lancome Teint Idole Ultra Foundation", bronzer_product="Fenty Beauty Bronzer", blush_product="Lancome blush", make_up_bag_id=1),
             follow_redirects=True
         )
         self.assertIn(b'MAC Face Primer', response.data)
 
     def test_add_eyes_post(self):
         response = self.client.post(
-            url_for('eyes'),
-            data = dict(eye_concealer_product="MAC Concealer", eye_shadow_product="MAC eyeshadow", eye_liner_product="MAC eyeliner", mascara_product="MAC mascara", eye_brow_pencil_product="MAC eyebrow pencil"),
+            url_for('eyes',id=1),
+            data = dict(eye_concealer_product="MAC Concealer", eye_shadow_product="MAC eyeshadow", eye_liner_product="MAC eyeliner", mascara_product="MAC mascara", eye_brow_pencil_product="MAC eyebrow pencil",make_up_bag_id=1),
             follow_redirects=True
         )
         self.assertIn(b'MAC Concealer', response.data)
@@ -90,8 +90,8 @@ class TestAdd(TestBase):
 
     def test_add_lips_post(self):
         response = self.client.post(
-            url_for('lips'),
-            data = dict(lip_liner_product="Pat McGrath Lipstick", lipstick_product="Pat McGrath Lipliner", lipgloss="Pat McGrath Lipgloss"),
+            url_for('lips',id=1),
+            data = dict(lip_liner_product="Pat McGrath Lipstick", lipstick_product="Pat McGrath Lipliner", lipgloss="Pat McGrath Lipgloss", make_up_bag_id=1),
             follow_redirects=True
         )
         self.assertIn(b'Pat McGrath Lipstick' ,response.data)
