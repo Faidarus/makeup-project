@@ -86,6 +86,12 @@ def face(make_up_bag_id):
     make_up_bag_owner=models.Make_up_bag.query.filter_by(id=make_up_bag_id).first()
     return render_template('face.html', title="Face Products", form=form, face=face, make_up_bag_owner=make_up_bag_owner, message=error)
 
+# @app.route('/facedelete/<int:face_id>') 
+# def delete(face_id):
+#     delete_face_products=models.Face.query.filter_by(id=face_id).first()
+#     db.session.delete(delete_face_products)
+#     db.session.commit()
+#     return redirect ('/make_up_bag')
 
 @app.route('/eyes/<int:make_up_bag_id>', methods=['GET', 'POST'])
 def eyes(make_up_bag_id):
@@ -112,6 +118,14 @@ def eyes(make_up_bag_id):
     make_up_bag_owner=models.Make_up_bag.query.filter_by(id=make_up_bag_id).first()
     return render_template('eyes.html',title="Eye Products", form=form, eyes=eyes, make_up_bag_owner=make_up_bag_owner, message=error)
 
+# @app.route('/eyesdelete/<int:eyes_id>') 
+# def delete(eyes_id):
+#     delete_eyes_products=models.Eyes.query.filter_by(id=eyes_id).first()
+#     db.session.delete(delete_eyes_products)
+#     db.session.commit()
+#     return redirect ('/make_up_bag')
+
+
 
 @app.route('/lips/<int:make_up_bag_id>', methods=['GET', 'POST'])
 def lips(make_up_bag_id):
@@ -137,25 +151,26 @@ def lips(make_up_bag_id):
     make_up_bag_owner=models.Make_up_bag.query.filter_by(id=make_up_bag_id).first()
     return render_template('lips.html',title="Lip Products", form=form, lips=lips, make_up_bag_owner=make_up_bag_owner, message=error)
 
-# @app.route('/face/delete/<face_primer>') # this will not work because face_primer is an input not something in the route 
-# def delete(face_primer):
-#     delete_first_face_primer=Face.query.first()
-#     db.session.delete(delete_first_face_primer)
-#     db.session.commit()
-#     return face_primer
+@app.route('/lipsdelete/<int:lips_id>') 
+def delete(lips_id):
+    delete_lip_products=models.Lips.query.filter_by(id=lips_id).first()
+    db.session.delete(delete_lip_products)
+    db.session.commit()
+    return redirect ('/make_up_bag')
 
-# @app.route('/face/delete/, methods=['DELETE'])
-# def delete():
-#       forms = faceform()
-#       if request.method=='DELETE':
-#           face_primer_product = form.face_primer_product.data
-#           foundation_product = form.foundation_product.data
-#           bronzer_product = form.bronzer_product.data
-#           blush_product = form.blush_product.data
-#     delete_new_face_products=Face.query.first()
-#     db.session.delete(delete_new_face_products)
+# @app.route('/lipsupdate/<int:lips_id>') 
+# def update(lips_id):
+#     update_lips_products=models.Lips.query.filter_by(id=lips_id).first()
 #     db.session.commit()
-#     return 'Delted your face products'
+#     # return update_lips_products
+#     return redirect ('/make_up_bag')
+
+# @app.route('/lipsupdate/<int:lips_id>')
+# def update(lips_id):
+#     update_lips_products=models.Lips.query.filter_by(id=lips_id).first()
+#     update_lips_products.lips_id = lips_id
+#     db.session.commit()
+#     return update_lips_products.lips_id
 
 
 if __name__ == "__main__":
