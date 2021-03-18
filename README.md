@@ -39,7 +39,7 @@
 
 #### **Architecture:**
 
-![architecture](Architecture.png)
+![architecture](Architecture.PNG)
 
 ## **Trello Board:**
 
