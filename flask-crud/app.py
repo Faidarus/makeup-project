@@ -126,7 +126,6 @@ def eyes(make_up_bag_id):
 #     return redirect ('/make_up_bag')
 
 
-
 @app.route('/lips/<int:make_up_bag_id>', methods=['GET', 'POST'])
 def lips(make_up_bag_id):
     error = ""
@@ -158,20 +157,35 @@ def delete(lips_id):
     db.session.commit()
     return redirect ('/make_up_bag')
 
-# @app.route('/lipsupdate/<int:lips_id>') 
-# def update(lips_id):
-#     update_lips_products=models.Lips.query.filter_by(id=lips_id).first()
-#     db.session.commit()
-#     # return update_lips_products
-#     return redirect ('/make_up_bag')
+@app.route('/updatelips/<int:lips_id>',methods=['GET', 'POST'])
+def update(lips_id):
+    lips = models.Lips.query.filter_by(id=lips_id).first()
+    error = ""
+    form = Lipsform()
+    # form.make_up_bag_id.data = make_up_bag_id
 
-# @app.route('/lipsupdate/<int:lips_id>')
-# def update(lips_id):
-#     update_lips_products=models.Lips.query.filter_by(id=lips_id).first()
-#     update_lips_products.lips_id = lips_id
-#     db.session.commit()
-#     return update_lips_products.lips_id
+    if request.method=='POST':
+        lips.lip_liner = form.lip_liner_product.data
+        lips.lipstick = form.lipstick_product.data
+        lips.lipgloss = form.lipgloss_product.data
+        lips.make_up_bag_id = form.make_up_bag_id.data
 
+        if len(lips.lip_liner) == 0 or len(lips.lipstick) == 0 or len(lips.lipgloss) == 0:
+            error = "Please input lips products"
+        
+        else:
+              
+            db.session.commit()
+            return redirect('/make_up_bag')
+
+    else:
+        form.lip_liner_product.data = lips.lip_liner
+        form.lipstick_product.data = lips.lipstick
+        form.lipgloss_product.data = lips.lipgloss
+        form.make_up_bag_id.data = lips.make_up_bag_id
+    return render_template('updatelips.html',title="Update Lips", form=form, lips=lips, message=error)
+
+   
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')

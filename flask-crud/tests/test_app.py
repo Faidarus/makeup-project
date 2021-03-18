@@ -62,10 +62,15 @@ class TestViews(TestBase):
         self.assertEqual(response.status_code, 200)
         # self.assertIn(b'lip_liner="Pat McGrath Lipstick", lipstick="Pat McGrath Lipliner", lipgloss="Pat McGrath Lipgloss", make_up_bag_id=1', response.data)
     
-    # def test_delete_get(self):
-    #     response = self.client.get(url_for('lipsdelete',make_up_bag_id=1))
-    #     self.assertEqual(response.status_code, 200)
-    #     assert b'Pat McGrath Lipliner'
+    def test_delete_get(self):
+        response = self.client.get(url_for('delete',lips_id=1),follow_redirects=True)
+        self.assertEqual(response.status_code,200 )
+        assert b'Pat McGrath Lipliner'
+    
+    def test_update_get(self):
+        response = self.client.get(url_for('update',lips_id=1),follow_redirects=True)
+        self.assertEqual(response.status_code,200 )
+        assert b'Pat McGrath Lipliner'
         
 #testing if my input was added 
 
