@@ -1,6 +1,6 @@
 Flask
 Flask-SQLAlchemy
-SQLAlchemy
+SQLAlchemy<1.4
 pymysql
 flask-wtf
 wtforms
