@@ -37,6 +37,15 @@
 ![entity flow chart](entityflowchart.png)
 
 
+#### **Architecture:**
+
+![architecture](Architecture.png)
+
+## **Trello Board:**
+
+#### **Trello-Kanban board:**
+
+
 ## **Contributors/Reference:**
 
 #### My contributors are: Dara Oladapoa and Vinesh Ghela.
