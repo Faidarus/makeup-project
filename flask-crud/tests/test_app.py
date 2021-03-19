@@ -4,6 +4,12 @@ from app import app
 from application import db, models
 from application.models import Make_up_bag, Face, Eyes, Lips
 
+#unit test commands 
+# pytest
+# pytest --cov=app
+# pytest --cov-config=.coveragec --cov=.
+# pytest --cov=app --cov-report=term-missing
+# pytest --cov . --cov-report html
 
 # creating base class 
 
@@ -107,5 +113,7 @@ class TestAdd(TestBase):
             follow_redirects=True
         )
         self.assertIn(b'Pat McGrath Lipstick' ,response.data)
+    
+
 
 
