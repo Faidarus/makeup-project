@@ -39,7 +39,7 @@
 
 #### **Architecture:**
 
-![architecture](Architecturefinal.PNG)
+![architecture](Architectureedited.PNG)
 
 ## **Project Management:**
 
