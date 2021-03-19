@@ -50,14 +50,14 @@ def make_up_bag():
     if request.method=='POST':
         third_name = form.third_name.data
         
-        if len(third_name) == 0:
+        if len(third_name) == 0: #to check the len of the input so that if the len is less than 0 then it request data to be inputed 
             error = "Please input name"
         else:
             new_owner = models.Make_up_bag(name=form.third_name.data)
             db.session.add(new_owner)
             db.session.commit()
             return redirect('/make_up_bag')
-    make_up_bag_owner = models.Make_up_bag.query.all()
+    make_up_bag_owner = models.Make_up_bag.query.all() # to read my make_bag input
     return render_template('make_up_bag.html',title="Make-up bag", form=form, make_up_bag_owner=make_up_bag_owner, message=error)
 
 
@@ -82,16 +82,10 @@ def face(make_up_bag_id):
             db.session.add(new_face_products)
             db.session.commit()
             return redirect('/make_up_bag')
-    face = models.Face.query.filter_by(make_up_bag_id=make_up_bag_id)
-    make_up_bag_owner=models.Make_up_bag.query.filter_by(id=make_up_bag_id).first()
+    face = models.Face.query.filter_by(make_up_bag_id=make_up_bag_id) #read my face input
+    make_up_bag_owner=models.Make_up_bag.query.filter_by(id=make_up_bag_id).first() #read and connect name to my face feature 
     return render_template('face.html', title="Face Products", form=form, face=face, make_up_bag_owner=make_up_bag_owner, message=error)
 
-# @app.route('/facedelete/<int:face_id>') 
-# def delete(face_id):
-#     delete_face_products=models.Face.query.filter_by(id=face_id).first()
-#     db.session.delete(delete_face_products)
-#     db.session.commit()
-#     return redirect ('/make_up_bag')
 
 @app.route('/eyes/<int:make_up_bag_id>', methods=['GET', 'POST'])
 def eyes(make_up_bag_id):
@@ -118,12 +112,6 @@ def eyes(make_up_bag_id):
     make_up_bag_owner=models.Make_up_bag.query.filter_by(id=make_up_bag_id).first()
     return render_template('eyes.html',title="Eye Products", form=form, eyes=eyes, make_up_bag_owner=make_up_bag_owner, message=error)
 
-# @app.route('/eyesdelete/<int:eyes_id>') 
-# def delete(eyes_id):
-#     delete_eyes_products=models.Eyes.query.filter_by(id=eyes_id).first()
-#     db.session.delete(delete_eyes_products)
-#     db.session.commit()
-#     return redirect ('/make_up_bag')
 
 
 @app.route('/lips/<int:make_up_bag_id>', methods=['GET', 'POST'])
@@ -150,6 +138,7 @@ def lips(make_up_bag_id):
     make_up_bag_owner=models.Make_up_bag.query.filter_by(id=make_up_bag_id).first()
     return render_template('lips.html',title="Lip Products", form=form, lips=lips, make_up_bag_owner=make_up_bag_owner, message=error)
 
+# CRUD Delete and Update 
 @app.route('/lipsdelete/<int:lips_id>') 
 def delete(lips_id):
     delete_lip_products=models.Lips.query.filter_by(id=lips_id).first()
@@ -162,10 +151,9 @@ def update(lips_id):
     lips = models.Lips.query.filter_by(id=lips_id).first()
     error = ""
     form = Lipsform()
-    # form.make_up_bag_id.data = make_up_bag_id
 
     if request.method=='POST':
-        lips.lip_liner = form.lip_liner_product.data
+        lips.lip_liner = form.lip_liner_product.data #branding lips to attribute 
         lips.lipstick = form.lipstick_product.data
         lips.lipgloss = form.lipgloss_product.data
         lips.make_up_bag_id = form.make_up_bag_id.data

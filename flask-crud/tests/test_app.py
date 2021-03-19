@@ -38,9 +38,9 @@ class TestBase(TestCase):
         db.session.add(test_lips)
         db.session.commit()
     
-    # def tearDown(self):
-    #     db.session.remove()
-    #     db.drop_all()
+    def tearDown(self):
+        db.session.remove()
+        db.drop_all()
 
     
 
@@ -48,35 +48,35 @@ class TestBase(TestCase):
 
 class TestViews(TestBase):
 
-    def test_make_up_bag_get(self):
-        response = self.client.get(url_for('make_up_bag'))
-        self.assertEqual(response.status_code, 200)
-        # self.assertIn(b'name="Sudi"', response.data)
+    def test_make_up_bag_get(self):   #creating a function 
+        response = self.client.get(url_for('make_up_bag')) #to get a response from my url
+        self.assertEqual(response.status_code, 200) #to ensure that the response a status of 200 and not 404 for example which would be a not found status
+       
 
     def test_face_get(self):
         response = self.client.get(url_for('face',make_up_bag_id=1))
         self.assertEqual(response.status_code, 200)
-        # self.assertIn(b'face_primer="MAC Face Primer", foundation="Lancome Teint Idole Ultra Foundation", bronzer="Fenty Beauty Bronzer", blush="Lancome blush", make_up_bag_id=1',  response.data)
+        
 
     def test_eyes_get(self):
         response = self.client.get(url_for('eyes',make_up_bag_id=1))
         self.assertEqual(response.status_code, 200)
-        # self.assertIn(b'eye_concealer="MAC Concealer", eye_shadow="MAC eyeshadow", eye_liner="MAC eyeliner", mascara="MAC mascara", eye_brow_pencil="MAC eyebrow pencil", make_up_bag_id=1', response.data)
+       
 
     def test_lips_get(self):
         response = self.client.get(url_for('lips',make_up_bag_id=1))
         self.assertEqual(response.status_code, 200)
-        # self.assertIn(b'lip_liner="Pat McGrath Lipstick", lipstick="Pat McGrath Lipliner", lipgloss="Pat McGrath Lipgloss", make_up_bag_id=1', response.data)
+        
     
     def test_delete_get(self):
-        response = self.client.get(url_for('delete',lips_id=1),follow_redirects=True)
-        self.assertEqual(response.status_code,200 )
-        assert b'Pat McGrath Lipliner'
+        response = self.client.get(url_for('delete',lips_id=1),follow_redirects=True) #this one requires a follow_redirects as without it will be 302 status with this it will redirect to the final stage which is a 200 status
+        self.assertEqual(response.status_code,200)
+        assert b'Pat McGrath Lipliner'  # to checks HTTP response code 
     
     def test_update_get(self):
         response = self.client.get(url_for('update',lips_id=1),follow_redirects=True)
-        self.assertEqual(response.status_code,200 )
-        assert b'Pat McGrath Lipliner'
+        self.assertEqual(response.status_code,200)
+        assert b'Pat McGrath Lipliner'  
         
 #testing if my input was added 
 
@@ -84,16 +84,16 @@ class TestAdd(TestBase):
     def test_add_post(self):
         response = self.client.post(
             url_for('make_up_bag'),
-            data = dict(name="Niya"),
+            data = dict(name="Sudi"), # using data (dictionaries) to simulate user input
             follow_redirects=True
         )
-        # self.assertIn(b"Niya",response.data)
+        self.assertIn(b'Sudi',response.data)
 
     def test_add_face_post(self):
         response = self.client.post(
             url_for('face',make_up_bag_id=1),
             data = dict(face_primer="MAC Face Primer", foundation="Lancome Teint Idole Ultra Foundation", bronzer="Fenty Beauty Bronzer", blush="Lancome blush", make_up_bag_id=1),
-            follow_redirects=True
+            follow_redirects=True #testing the routing and setting it to TRUE to ensure it routes correctly.
         )
         self.assertIn(b'MAC Face Primer', response.data)
 
@@ -113,6 +113,9 @@ class TestAdd(TestBase):
             follow_redirects=True
         )
         self.assertIn(b'Pat McGrath Lipstick' ,response.data)
+
+    
+    
     
 
 
