@@ -47,7 +47,7 @@
 
 ![trelloboard](Trelloboard.PNG)
 
-#### Please see a link to my Trello Kanban board [Trelloboardlink]:https://trello.com/b/FjtS37U8/my-make-up-bag. I utilised the board to ensure that I was on track to complete the coding for my project on the 19th of March. I moved the features(which included my user stories) and tasks by the format you can see from backlog all the way to done. This is the first time that I am using Kanban in my project planning, but it will not be the last time as this helped me stay on track. I definitely would recommend anyone that is a victim of procrastinating to utilise Trello and the templates that they offer!
+#### Please see a link to my Trello Kanban board [Trelloboard-link]:https://trello.com/b/FjtS37U8/my-make-up-bag. I utilised the board to ensure that I was on track to complete the coding for my project on the 19th of March. I moved the features(which included my user stories) and tasks by the format you can see from backlog all the way to done. This is the first time that I am using Kanban in my project planning, but it will not be the last time as this helped me stay on track. I definitely would recommend anyone that is a victim of procrastinating to utilise Trello and the templates that they offer!
 
 
 
