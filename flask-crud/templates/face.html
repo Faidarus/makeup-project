@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>Face</title>
+    </head>
+    <body>
+        <h2>Please input your Face products</h2>
+        <div class='form'>
+            <form method='POST' action=''>
+                {{ form.hidden_tag() }}
+                {{ form.face_primer_product.label }} {{ form.face_primer_product }}
+                <br>
+                {{ form.foundation_product.label }} {{ form.foundation_product }}
+                <br>
+                {{ form.bronzer_product.label }} {{ form.bronzer_product }}
+                <br>
+                {{ form.blush_product.label }} {{ form.blush_product }}
+                <br>
+                {{ form.make_up_bag_id.label }} {{ form.make_up_bag_id }}
+                <br>
+                {{ form.submit }}
+            {{ message }}
+            </form>
+        </div>
+        <a href="{{ url_for('make_up_bag') }}">Back to Make-up bag</a>
+        <table style="width:100%">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Face Primer</th>    
+                <th>Foundation</th>    
+                <th>Bronzer</th>    
+                <th>Blush</th>    
+            </tr>
+        </thead>
+        <tbody>
+            {% for f in face %}
+            <tr>
+                <td>{{make_up_bag_owner.name}}</td>
+                <td>{{f.face_primer}} </td>
+                <td>{{f.foundation}} </td>
+                <td>{{f.bronzer}} </td>
+                <td>{{f.blush}} </td>
+            </tr> {% endfor %} 
+        </tbody>    
+        </table>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>Lips</title>
+    </head>
+    <body>
+        <h2>Please input your Lip products</h2>
+        <div class='form'>
+            <form method='POST' action=''>
+                {{ form.hidden_tag() }}
+                {{ form.lip_liner_product.label }} {{ form.lip_liner_product }}
+                <br>
+                {{ form.lipstick_product.label }} {{ form.lipstick_product }}
+                <br>
+                {{ form.lipgloss_product.label }} {{ form.lipgloss_product}}
+                <br>
+                {{ form.make_up_bag_id.label }} {{ form.make_up_bag_id }}
+                <br>
+                {{ form.submit }}
+            {{ message }}
+            </form>
+        </div>
+        <a href="{{ url_for('make_up_bag') }}">Back to Make-up bag</a>
+        
+        <table style="width:100%">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Lipliner</th>    
+                <th>Lipstick</th>    
+                <th>Lipgloss</th>    
+            </tr>
+        </thead>
+        <tbody>
+            {% for l in lips %}
+            <tr>
+                <td>{{make_up_bag_owner.name}}</td>
+                <td>{{l.lip_liner}} </td>
+                <td>{{l.lipstick}} </td>
+                <td>{{l.lipgloss}} </td>
+                <td><a href="/lipsdelete/{{l.id}}"type="button">Delete Lip Products</a></td>
+                <td><a href="/updatelips/{{l.id}}"type="button">Update Lip Products</a></td>
+            </tr> {% endfor %} 
+        </tbody>
+    </body>

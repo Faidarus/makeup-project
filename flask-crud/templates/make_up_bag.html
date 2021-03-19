@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Make-up bag</title>
+    </head>
+    <body>
+        <h2>Please input your name</h2>
+        <div class='form'>
+            <form method='POST' action=''>
+                {{ form.hidden_tag() }}
+                {{ form.third_name.label }} {{ form.third_name }}
+                <br>
+                {{ form.submit }}
+            {{ message }}
+            </form>
+        </div>
+        <br> 
+        <br>
+        <table style="width:100%">
+            <thead>
+            <tr>
+                <th>Name </th>   
+                <th>Face Products </th>  
+                <th>Eye Products </th>    
+                <th>Lip Products </th>   
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in make_up_bag_owner %}
+            <tr>
+                <td>{{m.name}} </td>
+                <td><a href='/face/{{m.id}}' type ="button">Face Products</a></td>
+                <td><a href='/eyes/{{m.id}}' type ="button">Eye Products</a></td>
+                <td><a href='/lips/{{m.id}}' type ="button">Lip Products</a></td>
+            </tr> {% endfor %} 
+        </tbody>    
+        </table>
+    </body>
+</html>

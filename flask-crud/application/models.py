@@ -1,12 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy 
-from flask import Flask
-
-app = Flask(__name__)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root@35.189.66.154/mymakeupbag_data"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
-db = SQLAlchemy(app)
-
+from application import db
 
 class Make_up_bag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -40,7 +32,3 @@ class Lips(db.Model):
     lipstick = db.Column(db.String(50), nullable=False)
     lipgloss = db.Column(db.String(50), nullable=False)
     make_up_bag_id = db.Column(db.Integer,db.ForeignKey('make_up_bag.id'),nullable=False)
-
-
-if __name__ == "__main__":
-    app.run(debug==True,host='0.0.0.0')
